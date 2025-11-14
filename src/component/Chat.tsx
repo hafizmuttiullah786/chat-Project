@@ -2,7 +2,13 @@ import "../styles/Chat.css";
 // import chatIcon from "@assets/imgs/chatImgs/chatIcon.webp";
 import messageImg from "../assets/chatImgs/message_img.webp";
 import chatAvatar from "../assets/chatImgs/Avatar.svg";
+import { useNavigate } from "react-router-dom";
 const Chat = () => {
+  const navigate = useNavigate();
+  const LogOut = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
   return (
     <>
       <div className="chat--wrapper">
@@ -241,6 +247,19 @@ const Chat = () => {
                     <div className="chat-user">
                       <div className="user-display-name">Alina_Malik</div>
                       <div className="user-identifier">its_Allnahere</div>
+                    </div>
+                    <div
+                      className="logout"
+                      style={{
+                        width: "100%",
+                        textAlign: "right",
+                        cursor: "pointer",
+                        fontWeight: "bold",
+                        fontSize: "18px",
+                      }}
+                      onClick={LogOut}
+                    >
+                      Logout
                     </div>
                   </div>
                   <div className="chat-messages">
