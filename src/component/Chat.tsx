@@ -3,6 +3,8 @@ import "../styles/Chat.css";
 import messageImg from "../assets/chatImgs/message_img.webp";
 import chatAvatar from "../assets/chatImgs/Avatar.svg";
 import { useNavigate } from "react-router-dom";
+// import absImg from "../assets/chatImgs/bgImg.png";
+
 const Chat = () => {
   const navigate = useNavigate();
   const LogOut = () => {
@@ -16,6 +18,7 @@ const Chat = () => {
           <div className="row">
             <div className="col-lg-3">
               <div className="chat--left--side">
+                <div className="page--heading">My Chat</div>
                 <div className="chat--search">
                   <i className="ri-search-line"></i>
                   <input type="text" placeholder="Search here..." />
@@ -256,6 +259,7 @@ const Chat = () => {
                         cursor: "pointer",
                         fontWeight: "bold",
                         fontSize: "18px",
+                        color:"#fff"
                       }}
                       onClick={LogOut}
                     >
@@ -263,6 +267,9 @@ const Chat = () => {
                     </div>
                   </div>
                   <div className="chat-messages">
+                    <div className="abs--img">
+                      {/* <img src={absImg} alt="abs image" /> */}
+                    </div>
                     <div className="message-bubble sender-message">
                       <p className="message-text">Hey there! 🟡</p>
                       <span className="message-time">10:10pm</span>

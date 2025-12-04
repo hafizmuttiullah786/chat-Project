@@ -3,4 +3,5 @@ export const RouteNames = {
   login:"/login",
   register:"/register",
   chat:"/chat",
+  users:"/users",
 };
