@@ -181,7 +181,7 @@ select:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+    background: #1C4632;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -285,7 +285,7 @@ select:focus {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    background: #1C4632;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -355,11 +355,16 @@ select:focus {
     border: none;
     border-radius: 8px;
     background: #fff;
-    color: #2575fc;
+    color: #1C4632;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 50px;
 }
 
 .login-btn:hover {
@@ -384,4 +389,37 @@ select:focus {
 }
 .row{
     margin: unset !important;
+}
+
+/* HTML: <div class="loader"></div> */
+.page-loader {
+    height: 45px;
+    aspect-ratio: 1.2;
+    --c: no-repeat repeating-linear-gradient(90deg, #000 0 20%, #0000 0 40%);
+    background:
+        var(--c) 50% 0,
+        var(--c) 50% 100%;
+    background-size: calc(500%/6) 50%;
+    animation: l10 1s infinite linear;
+}
+
+@keyframes l10 {
+    33% {
+        background-position: 0 0, 100% 100%
+    }
+
+    66% {
+        background-position: 0 100%, 100% 0
+    }
+
+    100% {
+        background-position: 50% 100%, 50% 0
+    }
+}
+.loader--parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 123, 255, 0.2);
 }

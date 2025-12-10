@@ -6,6 +6,8 @@ const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMsg, seterrorMsg] = useState("");
+  const [loader, setloader] = useState<boolean>(false);
+
   const navigate = useNavigate();
 
   const Login = async (e: any) => {
@@ -19,9 +21,11 @@ const Login = () => {
     }
     if (email == "" || password == "") {
       seterrorMsg(`please enter the value of ${emptyfields}`);
+      return;
     } else {
       seterrorMsg("");
     }
+    setloader(true);
     try {
       const response = await fetch("https://api.connectycube.com/login.json", {
         method: "POST",
@@ -36,6 +40,7 @@ const Login = () => {
       });
       const result = await response.json();
       if (response.ok) {
+        setloader(false);
         localStorage.setItem("authToken", (globalThis as any).authToken || "");
         navigate("/");
       } else {
@@ -77,10 +82,10 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        {errorMsg && <p>{errorMsg}</p>}
+        {errorMsg && <p style={{color:"#fff"}}>{errorMsg}</p>}
 
         <button type="submit" className="login-btn" onClick={Login}>
-          Login
+          {loader ? <div className="loader"></div> : <span> Login</span>}
         </button>
 
         <p className="signup-text">

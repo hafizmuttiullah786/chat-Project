@@ -267,7 +267,10 @@ img {
   color: #007bff;
   word-wrap: break-word;
 }
-
+.d-flex{
+  display: flex;
+  column-gap: 20px;
+}
 .user-card p {
   margin: 5px 0;
   font-size: 0.95em;
@@ -476,4 +479,56 @@ img {
 
 .chat--right--side .chat--message--wraper .message-input-container .text-message-inner-container .send-button:hover {
   background: linear-gradient(270deg, #f92a9d 0%, #ff5f6d 100%);
+}
+.loader,
+.loader:before,
+.loader:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  animation-fill-mode: both;
+  animation: bblFadInOut 1.8s infinite ease-in-out;
+  /* ✔ Updated color */
+}
+
+.loader {
+  color: #FFF;
+  font-size: 7px;
+  position: relative;
+  text-indent: -9999em;
+  transform: translateZ(0);
+  animation-delay: -0.16s;
+  /* position: absolute; */
+  /* top: 0; */
+}
+
+.loader:before,
+.loader:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+
+.loader:before {
+  left: -3.5em;
+  animation-delay: -0.32s;
+}
+
+.loader:after {
+  left: 3.5em;
+}
+
+@keyframes bblFadInOut {
+
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 2.5em 0 -1.3em #1C4632;
+    /* ✔ shadow color added */
+  }
+
+  40% {
+    box-shadow: 0 2.5em 0 0 #1C4632;
+    /* ✔ shadow color added */
+  }
 }
