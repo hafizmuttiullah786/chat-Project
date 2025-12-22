@@ -1,12 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import "../styles/Chat.css";
 // import chatIcon from "@assets/imgs/chatImgs/chatIcon.webp";
 import messageImg from "../assets/chatImgs/message_img.webp";
 import chatAvatar from "../assets/chatImgs/Avatar.svg";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import absImg from "../assets/chatImgs/bgImg.png";
+import Dropdown from "react-bootstrap/Dropdown";
 
 const Chat = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const email = location.state?.email;
+
   const LogOut = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
@@ -243,28 +248,26 @@ const Chat = () => {
             <div className="col-lg-9">
               <div className="chat--right--side">
                 <div className="chat--message--wraper">
-                  <div className="chat--topbar">
-                    <div className="user-avatar-circle">
-                      <img src={chatAvatar} alt="avatar" />
+                  <div className="chat--topbar justify-content-between align-items-center">
+                    <div className="d-flex">
+                      <div className="user-avatar-circle">
+                        <img src={chatAvatar} alt="avatar" />
+                      </div>
+                      <div className="chat-user">
+                        <div className="user-display-name">Alina_Malik</div>
+                        <div className="user-identifier">its_Allnahere</div>
+                      </div>
                     </div>
-                    <div className="chat-user">
-                      <div className="user-display-name">Alina_Malik</div>
-                      <div className="user-identifier">its_Allnahere</div>
-                    </div>
-                    <div
-                      className="logout"
-                      style={{
-                        width: "100%",
-                        textAlign: "right",
-                        cursor: "pointer",
-                        fontWeight: "bold",
-                        fontSize: "18px",
-                        color:"#fff"
-                      }}
-                      onClick={LogOut}
-                    >
-                      Logout
-                    </div>
+                    <Dropdown className="custom--dropDown">
+                      <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                        {email}
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item href="#/action-1" onClick={LogOut}>
+                          Logout
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
                   </div>
                   <div className="chat-messages">
                     <div className="abs--img">

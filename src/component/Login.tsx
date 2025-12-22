@@ -12,7 +12,7 @@ const Login = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const closeModal = () => {
     setShowModal(false);
-  }
+  };
   const navigate = useNavigate();
   const Login = async (e: any) => {
     e.preventDefault();
@@ -46,7 +46,11 @@ const Login = () => {
       if (response.ok) {
         setloader(false);
         localStorage.setItem("authToken", (globalThis as any).authToken || "");
-        navigate("/");
+        navigate("/", {
+          state: {
+            email: email,
+          },
+        });
       } else {
         console.error("❌ Registration failed:", result);
         let errorMessage;

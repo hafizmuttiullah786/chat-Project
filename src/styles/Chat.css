@@ -33,7 +33,12 @@ img {
   color: #808080;
   border: none;
 }
+.custom--dropDown .btn-primary{
+  background: unset !important;
 
+}
+.dropdown-menu{
+} 
 .chat--left--side .chat--search input::placeholder {
   font-weight: 500;
   font-size: 16px;
