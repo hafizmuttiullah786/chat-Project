@@ -1,89 +1,32 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import axios from "axios";
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import Loader from "./Loader";
+type RegisterProps = {
+  signup: (e: any) => Promise<void>;
+  showPassword?: boolean;
+  showConfirmPassword?: boolean;
+  name?: string;
+  username?: string;
+  phoneno?: string;
+  email?: string;
+  password?: string;
+  confirm?: string;
+  error?: string;
+  setName: (q: string) => void;
+  setUserName: (q: string) => void;
+  setEmail: (q: string) => void;
+  setPhoneNo: (e: string) => void;
+  setPassword: (e: string) => void;
+  setConfirm: (e: string) => void;
+  setShowConfirmPassword: (e: boolean) => void;
+  setShowPassword: (e: boolean) => void;
+};
 
-const Register = () => {
-  const [name, setName] = useState<string>("");
-  const [username, setUserName] = useState<string>("");
-  const [phoneno, setPhoneNo] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confirm, setConfirm] = useState<string>("");
-  const [error, setError] = useState<string>("");
-  const [showPassword, setShowPassword] = useState<boolean>();
-  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>();
-  const [loader, setLoader] = useState<boolean>(false);
-
-  const navigate = useNavigate();
-
-  const signup = async (e: any) => {
-    e.preventDefault();
-    const emptyFields: string[] = [];
-    if (!name) emptyFields.push("Name");
-    if (!email) emptyFields.push("Email");
-    if (!password) emptyFields.push("Password");
-    if (!confirm) emptyFields.push("Confirm Password");
-    if (!username) emptyFields.push("user name");
-    if (!phoneno) emptyFields.push("phone no");
-    if (emptyFields.length > 0) {
-      setError(`please filled the  ${emptyFields} field`);
-      return;
-    }
-    if (password !== confirm) {
-      setError("password and confitm password is not matching!!");
-      return;
-    }
-    setLoader(true);
-    setError("");
-    try {
-      const response = await fetch("https://api.connectycube.com/users.json", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "CB-Token": (globalThis as any).authToken || "",
-        },
-        body: JSON.stringify({
-          user: {
-            login: username,
-            password: password,
-            full_name: name,
-            email: email,
-            phone: phoneno,
-          },
-        }),
-      });
-      const result = await response.json();
-      console.log("result aa gay:", result);
-      if (response.ok) {
-        setLoader(false);
-        navigate("/login");
-      } else {
-        console.error("❌ Registration failed:", result);
-        let errorMessage;
-        if (result.errors && typeof result.errors === "object") {
-          errorMessage = Object.values(result.errors).flat().join("\n");
-        } else {
-          errorMessage = result.errors || "Registration failed!";
-        }
-        alert(errorMessage);
-      }
-    } catch (error) {
-      console.log("Error:", error);
-    }
-  };
-
-  if (loader) {
-    return <Loader />;
-  }
+const Register = (props: RegisterProps) => {
   return (
     <div className="register-wrapper">
       <form
         className="register-card"
-        onSubmit={signup}
+        onSubmit={props.signup}
         style={{ width: "100%", maxWidth: "45%" }}
       >
         <h2>Create Account ✨</h2>
@@ -96,8 +39,8 @@ const Register = () => {
               style={{ width: "100%" }}
               type="text"
               placeholder="Enter your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={props.name}
+              onChange={(e) => props.setName(e.target.value)}
             />
           </div>
 
@@ -107,8 +50,8 @@ const Register = () => {
               style={{ width: "100%" }}
               type="text"
               placeholder="Enter your user name"
-              value={username}
-              onChange={(e) => setUserName(e.target.value)}
+              value={props.username}
+              onChange={(e) => props.setUserName(e.target.value)}
             />
           </div>
         </div>
@@ -120,8 +63,8 @@ const Register = () => {
               style={{ width: "100%" }}
               type="number"
               placeholder="Enter your user name"
-              value={phoneno}
-              onChange={(e) => setPhoneNo(e.target.value.slice(0, 11))}
+              value={props.phoneno}
+              onChange={(e) => props.setPhoneNo(e.target.value.slice(0, 11))}
             />
           </div>
 
@@ -131,8 +74,8 @@ const Register = () => {
               style={{ width: "100%" }}
               type="email"
               placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={props.email}
+              onChange={(e) => props.setEmail(e.target.value)}
             />
           </div>
         </div>
@@ -142,12 +85,12 @@ const Register = () => {
             <div style={{ position: "relative" }}>
               <input
                 style={{ width: "100%" }}
-                type={showPassword ? "text" : "password"}
+                type={props.showPassword ? "text" : "password"}
                 placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={props.password}
+                onChange={(e) => props.setPassword(e.target.value)}
               />
-              {showPassword ? (
+              {props.showPassword ? (
                 <i
                   className="ri-eye-line"
                   style={{
@@ -157,7 +100,7 @@ const Register = () => {
                     cursor: "pointer",
                     transform: "translateY(-50%)",
                   }}
-                  onClick={() => setShowPassword(!showPassword)}
+                  onClick={() => props.setShowPassword(!props.showPassword)}
                 ></i>
               ) : (
                 <>
@@ -170,7 +113,7 @@ const Register = () => {
                       cursor: "pointer",
                       transform: "translateY(-50%)",
                     }}
-                    onClick={() => setShowPassword(!showPassword)}
+                    onClick={() => props.setShowPassword(!props.showPassword)}
                   ></i>
                 </>
               )}
@@ -181,12 +124,12 @@ const Register = () => {
             <div style={{ position: "relative" }}>
               <input
                 style={{ width: "100%" }}
-                type={showConfirmPassword ? "text" : "password"}
+                type={props.showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm password"
-                value={confirm}
-                onChange={(e) => setConfirm(e.target.value)}
+                value={props.confirm}
+                onChange={(e) => props.setConfirm(e.target.value)}
               />
-              {showConfirmPassword ? (
+              {props.showConfirmPassword ? (
                 <i
                   className="ri-eye-line"
                   style={{
@@ -196,7 +139,9 @@ const Register = () => {
                     cursor: "pointer",
                     transform: "translateY(-50%)",
                   }}
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  onClick={() =>
+                    props.setShowConfirmPassword(!props.showConfirmPassword)
+                  }
                 ></i>
               ) : (
                 <>
@@ -209,14 +154,16 @@ const Register = () => {
                       cursor: "pointer",
                       transform: "translateY(-50%)",
                     }}
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    onClick={() =>
+                      props.setShowConfirmPassword(!props.showConfirmPassword)
+                    }
                   ></i>
                 </>
               )}
             </div>
           </div>
         </div>
-        {error && (
+        {props.error && (
           <p
             style={{
               color: "#fff",
@@ -228,7 +175,7 @@ const Register = () => {
               textTransform: "capitalize",
             }}
           >
-            {error}
+            {props.error}
           </p>
         )}
 
