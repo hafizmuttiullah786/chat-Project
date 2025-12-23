@@ -10,6 +10,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 const Chat = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  console.log("Location:", location);
   const email = location.state?.email;
 
   const LogOut = () => {

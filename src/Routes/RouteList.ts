@@ -1,8 +1,8 @@
 import { RouteNames } from "./RouteName";
-import Login from "../component/Login";
 import Chat from "../component/Chat";
 import RegisterScreen from "../screens/RegisterScreen";
 import UsersList from "../component/UsersList";
+import LoginScreen from "../screens/LoginScreen";
 export const RouteList = [
   {
     path: RouteNames.home,
@@ -10,7 +10,7 @@ export const RouteList = [
   },
   {
     path: RouteNames.login,
-    element: Login,
+    element: LoginScreen,
   },
   {
     path: RouteNames.register,
