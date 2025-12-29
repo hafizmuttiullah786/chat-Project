@@ -512,6 +512,9 @@ select:focus {
   right: 20px;
   cursor: pointer;
 }
+#dropdown-basic::after{
+  content: none;
+}
 @media (max-width: 576px) {
   .toast {
     left: 16px;

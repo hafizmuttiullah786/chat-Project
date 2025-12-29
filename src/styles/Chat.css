@@ -164,6 +164,7 @@ img {
   row-gap: 10px;
   flex-direction: column;
   height: 100%;
+  background: #161717;
 }
 
 .chat--right--side.no-messages .chatIcon img {
