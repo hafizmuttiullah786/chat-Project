@@ -46,6 +46,8 @@ const LoginScreen = () => {
       const result = await response.json();
       if (response.ok) {
         setloader(false);
+        localStorage.setItem("userId", result.user.id);
+        localStorage.setItem("userPassword", password);
         localStorage.setItem("authToken", (globalThis as any).authToken || "");
         navigate("/", {
           state: {
