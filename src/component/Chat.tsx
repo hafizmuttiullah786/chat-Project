@@ -26,7 +26,7 @@ const Chat = () => {
   const messageInputRef = useRef<HTMLInputElement>(null);
   const email = location.state?.email;
 
-  // 🔹 Connect user & listeners
+  // 🔹 Connect user
   useEffect(() => {
     const storedId = localStorage.getItem("userId");
     const storedPassword = localStorage.getItem("userPassword");
@@ -44,8 +44,19 @@ const Chat = () => {
         .catch(console.error);
     }
 
-    // ✅ Correct message listener
-    ConnectyCube.chat.onMessageListener = (_userId, msg) => {
+    return () => {
+      ConnectyCube.chat.disconnect();
+    };
+  }, []);
+
+  // 🔹 Message listeners (FINAL FIX)
+  useEffect(() => {
+    if (!userId) return;
+
+    // ✅ Receive messages (ignore own messages)
+    ConnectyCube.chat.onMessageListener = (_senderId, msg) => {
+      if (msg.sender_id === userId) return;
+
       setMessages((prev) => [
         ...prev,
         {
@@ -56,7 +67,7 @@ const Chat = () => {
       ]);
     };
 
-    // ✅ Delivery status
+    // ✅ Delivered status
     ConnectyCube.chat.onDeliveredStatusListener = (messageId) => {
       setMessages((prev) =>
         prev.map((m) => (m._id === messageId ? { ...m, delivered: true } : m))
@@ -70,13 +81,12 @@ const Chat = () => {
       );
     };
 
-    // 🧹 Cleanup
     return () => {
       ConnectyCube.chat.onMessageListener = null;
       ConnectyCube.chat.onDeliveredStatusListener = null;
       ConnectyCube.chat.onReadStatusListener = null;
     };
-  }, []);
+  }, [userId]);
 
   // 🔹 Logout
   const LogOut = () => {
@@ -93,7 +103,7 @@ const Chat = () => {
 
   // 🔹 Send message
   const sendMessage = () => {
-    if (activeUser === null || !userId || !messageInputRef.current) return;
+    if (!messageInputRef.current || activeUser === null || !userId) return;
 
     const text = messageInputRef.current.value.trim();
     if (!text) return;
@@ -111,8 +121,10 @@ const Chat = () => {
       },
     };
 
+    // ✅ Send to server
     ConnectyCube.chat.send(recipientId, message);
 
+    // ✅ Show instantly in UI
     setMessages((prev) => [
       ...prev,
       {
@@ -180,9 +192,12 @@ const Chat = () => {
           ) : (
             <div className="col-lg-9 col-md-9 col-9">
               <div className="chat--right--side">
-                <div className="chat--message--wraper" style={{justifyContent:"space-between"}}>
+                <div className="chat--message--wraper">
                   {/* Top Bar */}
-                  <div className="chat--topbar">
+                  <div
+                    className="chat--topbar"
+                    style={{ justifyContent: "space-between" }}
+                  >
                     <div className="d-flex">
                       <div className="user-avatar-circle">
                         <img src={chatAvatar} alt="avatar" />
@@ -196,7 +211,14 @@ const Chat = () => {
                     </div>
 
                     <Dropdown className="custom--dropDown">
-                      <Dropdown.Toggle variant="light" style={{background:"unset", border:"none", color:"#fff",}}>
+                      <Dropdown.Toggle
+                        variant="light"
+                        style={{
+                          background: "unset",
+                          border: "none",
+                          color: "#fff",
+                        }}
+                      >
                         {email}
                         <i className="ri-more-2-fill"></i>
                       </Dropdown.Toggle>
@@ -220,10 +242,11 @@ const Chat = () => {
                         <p className="message-text">{msg.body}</p>
                         <span className="message-time">{msg.time}</span>
 
-                        {msg.delivered && (
+                        {msg.read ? (
+                          <span className="message-status">✓✓</span>
+                        ) : msg.delivered ? (
                           <span className="message-status">✓</span>
-                        )}
-                        {msg.read && <span className="message-status">✓✓</span>}
+                        ) : null}
                       </div>
                     ))}
                   </div>
