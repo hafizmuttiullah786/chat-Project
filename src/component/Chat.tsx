@@ -67,24 +67,24 @@ const Chat = () => {
       ]);
     };
 
-    // ✅ Delivered status
-    ConnectyCube.chat.onDeliveredStatusListener = (messageId) => {
-      setMessages((prev) =>
-        prev.map((m) => (m._id === messageId ? { ...m, delivered: true } : m))
-      );
-    };
+    // // ✅ Delivered status
+    // ConnectyCube.chat.onDeliveredStatusListener = (messageId) => {
+    //   setMessages((prev) =>
+    //     prev.map((m) => (m._id === messageId ? { ...m, delivered: true } : m))
+    //   );
+    // };
 
-    // ✅ Read status
-    ConnectyCube.chat.onReadStatusListener = (messageId) => {
-      setMessages((prev) =>
-        prev.map((m) => (m._id === messageId ? { ...m, read: true } : m))
-      );
-    };
+    // // ✅ Read status
+    // ConnectyCube.chat.onReadStatusListener = (messageId) => {
+    //   setMessages((prev) =>
+    //     prev.map((m) => (m._id === messageId ? { ...m, read: true } : m))
+    //   );
+    // };
 
     return () => {
       ConnectyCube.chat.onMessageListener = null;
-      ConnectyCube.chat.onDeliveredStatusListener = null;
-      ConnectyCube.chat.onReadStatusListener = null;
+      // ConnectyCube.chat.onDeliveredStatusListener = null;
+      // ConnectyCube.chat.onReadStatusListener = null;
     };
   }, [userId]);
 
@@ -159,7 +159,7 @@ const Chat = () => {
                   <div
                     key={index}
                     className={`chat-item ${
-                      item.user?.login === email ? "d-none" : ""
+                      activeUser == index ? "active" : ""
                     }`}
                     onClick={() => MessageBoxHandler(index)}
                   >
@@ -168,7 +168,10 @@ const Chat = () => {
                     </div>
 
                     <div className="chat-details">
-                      <div className="chat-name">{item.user?.login}</div>
+                      <div className="chat-name">
+                        {item.user?.login} {""}
+                        {item.user?.login == email && <span>(You)</span>}
+                      </div>
                       <p className="chat-message">{item.user?.email || "--"}</p>
                     </div>
                   </div>
