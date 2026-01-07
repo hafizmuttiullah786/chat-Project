@@ -462,8 +462,7 @@ img {
   width: 100%;
 }
 
-
-  .message-input {
+.message-input {
   width: 100%;
   align-items: center;
   padding: 7px 19px;
@@ -649,4 +648,59 @@ img {
   padding: 8px;
   border-radius: 8px;
   background-color: #fff;
+}
+.Parent-comp {
+  width: 100%;
+  max-width: 90%;
+  margin: auto;
+  background-color: #fff1da;
+  height: 90vh;
+  padding: 20px 30px 30px 30px;
+  border-radius: 5px;
+}
+.child {
+  width: 95%;
+  height: 80%;
+  margin: auto;
+  padding: 20px 30px 30px 30px;
+  border-radius: 5px;
+  background-color: #fe8602;
+}
+.grand-child {
+  background-color: #93cbe9;
+  width: 95%;
+  height: 80%;
+  padding: 20px 30px 30px 30px;
+  border-radius: 5px;
+  margin: auto;
+}
+.great-grand-child {
+  width: 95%;
+  height: 80%;
+  padding: 20px 30px 30px 30px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: pink;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #003049;
+}
+.d--btn {
+  background-color: #161717;
+  color: #fff;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 5px;
+  width: 100px;
+  height: 35px;
+  font-size: 14px;
+  margin-left: 2.6%;
+  margin-top: 15px;
 }

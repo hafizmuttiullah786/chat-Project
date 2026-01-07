@@ -4,4 +4,5 @@ export const RouteNames = {
   register:"/register",
   chat:"/chat",
   users:"/users",
+  practice:"/practice"
 };
