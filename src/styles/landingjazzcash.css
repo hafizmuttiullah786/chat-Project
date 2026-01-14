@@ -1,0 +1,277 @@
+.JC--landing--page {
+    background-color: #12151c;
+    min-height: 100vh;
+}
+
+.JC--landing--page .JC--main--content {
+    max-width: 375px;
+    text-align: center;
+    margin: auto;
+    padding: 0px 15px;
+    position: relative;
+    background-color: #12151c;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content {
+    width: 88%;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .landingtext {
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    margin: 15px 0px !important;
+}
+
+
+.JC--landing--page .JC--main--content .lp-absolute-content .jc--input-wraper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #FFFFFF40;
+    background-color: #292c32;
+    height: 50px;
+}
+.jc--input-wraper:focus-within {
+    border: 1px solid rgba(0, 122, 255, 1) !important;
+}
+.JC--landing--page .JC--main--content .lp-absolute-content .jc--input-wraper .numberinput {
+    width: 80%;
+    background: transparent;
+    padding: 0px 10px;
+    color: #ffffffcc;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    height: 100%;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .jc--input-wraper input::placeholder {
+    color: #ffffffcc;
+    font-size: 15px;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .otpDiv {
+    margin-top: 20px;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .otpDiv .otpinputWraper input {
+    width: 100%;
+    max-width: 20%;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    height: 55px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .otpDiv .otpinputWraper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0px;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .subscribe-btn button {
+    padding: 15px 0px;
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #c7cacf;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transform: 0.3s linear;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .subscribe-btn button:hover {
+    opacity: 0.8;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .policytext {
+    margin-top: 10px;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .policytext p {
+    color: #a3a3ad;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    line-height: 22px;
+    margin-bottom: 5px;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .policytext p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .policytext p a:hover {
+    text-decoration: underline;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .policytext p:last-child {
+    margin-bottom: 0px;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .policytext .checkflex {
+    display: flex;
+    align-items: flex-start;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .policytext .checkflex input {
+    margin-top: 6px;
+}
+
+/* cong box */
+.response--modal {
+    background-color: #212121;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    border-radius: 16px;
+    text-align: center;
+    transition: all .3s linear;
+}
+
+.response--modal--overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+    display: none;
+    transition: all .3s linear;
+}
+
+.response--modal--overlay.show {
+    display: block;
+}
+
+.response--modal .mubarakhead {
+    color: #ffff;
+    font-weight: 700;
+    font-size: 22px;
+    margin: 12px 0px 20px;
+    text-align: center;
+}
+
+.response--modal .mubaraltext {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+    font-weight: 300;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .jc--input-wraper span {
+    padding: 0px 10px;
+    border-radius: 0px;
+    border: none;
+}
+
+.JC--landing--page .JC--main--content .lp-absolute-content .jc--input-wraper span img {
+    width: 40px;
+}
+
+
+.JC--landing--page .continue-text {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 160%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    opacity: 0.8;
+    margin-top: 8px;
+}
+
+.landingJC--default--btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    background: #007aff;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+}
+
+.landingJC--default--btn:hover {
+    opacity: 0.7;
+}
+
+.landingJC--default--btn.disabled {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.tp--JC--storeIcons {
+    display: flex;
+    justify-content: center;
+    column-gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tp--JC--storeIcons img {
+    width: 120px;
+    transition: all .3s linear;
+}
+
+.tp--JC--storeIcons img:hover {
+    opacity: 0.7;
+}
+
+@media (max-width: 767px) {
+    .JC--landing--page .JC--main--content {
+        padding: 0px;
+    }
+
+    .JC--landing--page .JC--main--content .lp-absolute-content .policytext p {
+        font-size: 12px;
+    }
+
+    .response--modal {
+        top: unset;
+        transform: translateX(-50%);
+        padding: 35px 20px;
+        bottom: 30px;
+    }
+
+    .response--modal {
+        max-width: 95%;
+        padding: 25px;
+    }
+}
+
+@media (max-width: 450px) {
+    .JC--landing--page .JC--main--content {
+        min-width: 100%;
+    }
+
+    .JC--landing--page .JC--main--content .lp-main-image {
+        width: 100%;
+    }
+}

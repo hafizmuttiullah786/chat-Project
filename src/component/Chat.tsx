@@ -97,6 +97,7 @@ const Chat = () => {
 
   // 🔹 Select user
   const MessageBoxHandler = (index: number) => {
+    localStorage.setItem("tabIndex", index.toString());
     setActiveUser(index);
     setMessages([]);
   };
@@ -136,7 +137,17 @@ const Chat = () => {
 
     messageInputRef.current.value = "";
   };
+  useEffect(() => {
+    const saveindex = localStorage.getItem("tabIndex");
+    const index = Number(saveindex);
 
+    if (index !== null && index < users.length) {
+      setActiveUser(Number(saveindex));
+    }
+    // if (saveindex !== null) {
+    //   setActiveUser(Number(saveindex));
+    // }
+  }, [users]);
   return (
     <div className="chat--wrapper">
       <div className="default-container">

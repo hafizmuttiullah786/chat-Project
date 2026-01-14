@@ -20,7 +20,9 @@ img {
   top: 50%;
   transform: translateY(-50%);
 }
-
+.marked{
+  background-color: yellow;
+}
 .chat--left--side .chat--search input {
   padding: 12px 44px;
   background: #2e2f2f;
